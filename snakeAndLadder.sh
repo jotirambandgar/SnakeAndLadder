@@ -3,15 +3,15 @@
 NO_PLAY=0
 LADDER=1
 SNAKE=2
-playerPosition=0
 
 function startPlaying(){
 	local	rollDieNum=0
+	local playerPosition=0
+
 	while [ $playerPosition -lt 100 ]
 	do
 		local die=$(( RANDOM % 6 + 1))
 		local option=$((RANDOM%3))
-
 		case $option in
 			$NO_PLAY)
 						((rollDieNum++)) ;;
@@ -28,9 +28,20 @@ function startPlaying(){
 					fi 
 					((rollDieNum++));;
 		esac
-	echo "die$rollDieNum : $playerPosition "
+	#echo "die$rollDieNum : $playerPosition "
 	done
-	#echo "$playerPosition"
+	echo $rollDieNum
 }
-startPlaying
-echo "$playerPosition"
+
+function main(){
+	player1DieCount=$(startPlaying)
+	player2DieCount=$(startPlaying)
+	if [ $player1DieCount -lt $player2DieCount ]
+	then
+			echo "player 1 win"
+	else
+			echo "player 2 win"
+	fi
+}
+
+main
