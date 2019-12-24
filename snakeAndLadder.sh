@@ -14,7 +14,7 @@ function startPlaying(){
 		local option=$((RANDOM%3))
 		case $option in
 			$NO_PLAY)
-						((rollDieNum++)) ;;
+					((rollDieNum++)) ;;
 			$LADDER)
 					if [ $(($playerPosition + $die)) -le 100 ]
 					then
